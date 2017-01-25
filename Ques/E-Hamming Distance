@@ -1,0 +1,55 @@
+
+
+/***************************************Quesion**********************************************/
+Given two integers x and y, calculate the Hamming distance.
+
+/***************************************Code*************************************************/
+
+public class Hamming {
+
+	public static void main(String[] args) {
+		// TODO 自动生成的方法存根
+		Hamming h = new Hamming();
+		System.out.println(h.exampleCode1(1, 4));
+
+	}
+	
+	public int myCode(int x, int y) {
+        int result = 0;
+        int[] num1 = new int[31];
+        int[] num2 = new int[31];
+        
+        int x1 = x; int y1 = y;
+        
+        for (int i = 30; i >= 0; i--) {
+            int temp = (int) Math.pow(2,i);
+            num1[i] = x1/temp; num2[i] = y1/temp;
+            x1 = x1 - num1[i] * temp; y1 = y1 - num2[i] * temp;
+        }
+        
+        for (int i = 0; i < 31; i++) {
+             System.out.println(num1[i] + "  " + num2[i]);
+             
+            if(num1[i] != num2[i]) {
+                
+                result++;
+            }
+            
+        }
+               
+        return result;
+	}
+	
+	public int exampleCode1(int x, int y) {
+		 return Integer.bitCount(x ^ y);
+	}
+
+}
+/************************************************************************************************/
+
+
+/***********************************comment******************************************************/
+思路应该从位的思想出发，bitcount有些取巧，& ~ | ^ 要掌握
+
+static int	bitCount(int i) 
+          返回指定 int 值的二进制补码表示形式的 1 位的数量。
